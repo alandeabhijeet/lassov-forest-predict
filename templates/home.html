@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fire Prediction </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        form {
+            max-width: 400px;
+            margin: auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"], select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Fire Prediction Input Form</h2>
+
+<form action="{{url_for('predict')}}" method="POST">
+    <label for="temperature">Temperature  </label>
+    <input type="text" id="temperature" name="Temperature" required pattern="[+-]?([0-9]*[.])?[0-9]+" title="Please enter a valid float number.">
+
+    <label for="rh">Relative Humidity (RH)  </label>
+    <input type="text" id="rh" name="RH" required pattern="[+-]?([0-9]*[.])?[0-9]+" title="Please enter a valid float number.">
+
+    <label for="ws">Wind Speed (Ws)  </label>
+    <input type="text" id="ws" name="WS" required pattern="[+-]?([0-9]*[.])?[0-9]+" title="Please enter a valid float number.">
+
+    <label for="rain">Rain  </label>
+    <input type="text" id="rain" name="Rain" required pattern="[+-]?([0-9]*[.])?[0-9]+" title="Please enter a valid float number.">
+
+    <label for="ffmc">FFMC  </label>
+    <input type="text" id="ffmc" name="FFMC" required pattern="[+-]?([0-9]*[.])?[0-9]+" title="Please enter a valid float number.">
+
+    <label for="dmc">DMC  </label>
+    <input type="text" id="dmc" name="DMC" required pattern="[+-]?([0-9]*[.])?[0-9]+" title="Please enter a valid float number.">
+
+    <label for="isi">ISI  </label>
+    <input type="text" id="isi" name="ISI" required pattern="[+-]?([0-9]*[.])?[0-9]+" title="Please enter a valid float number.">
+
+    <label for="region">Region:</label>
+    <select id="region" name="Region" required>
+        <option value="0">Bejaia Region</option>
+        <option value="1">Sidi-Bel Abbes Region</option>
+    </select>
+
+    <label for="classes">Classes:</label>
+    <select id="classes" name="Classes" required>
+        <option value="0">Not Fire</option>
+        <option value="1">Fire</option>
+    </select>
+
+    <button>Predict</button>
+</form>
+    <h2>Predicted FWL &nbsp; : {{results}}</h2>
+</body>
+</html>
